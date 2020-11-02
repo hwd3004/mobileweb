@@ -3,12 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
+    <!-- <link
       rel="stylesheet"
       href="./jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css"
     />
     <script src="./jquery/jquery.min.js"></script>
-    <script src="./jqmobile-1.5/jqmobile-1.5.js"></script>
+    <script src="./jqmobile-1.5/jqmobile-1.5.js"></script> -->
 
     <script
       type="text/javascript"
@@ -25,7 +25,14 @@
     <!-- 미디어쿼리 쓸땐 가로 크기 480으로 -->
   </head>
   <body>
-    <div id="map" style="width: 100%; height: 350px"></div>
+    <div
+      dangerouslySetInnerHTML="{{"
+      __html:
+      contents
+      }}
+      id="map"
+      style="width: 100%; height: 350px"
+    ></div>
     <!--  -->
     <script>
       var mapContainer = document.getElementById("map"), // 지도를 표시할 div
@@ -60,12 +67,14 @@
 
       const loadCoords = () => {
         const loadedCoords = localStorage.getItem(COORDS);
-        console.log(loadedCoords);
         if (loadedCoords === null) {
+          console.log(loadedCoords)
           navigator.geolocation.getCurrentPosition(
             handleGeoSuccess,
             handleGeoError
           );
+        } else {
+          console.log(loadedCoords);
         }
       };
 
