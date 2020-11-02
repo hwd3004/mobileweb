@@ -10,10 +10,21 @@
     <script src="./jquery/jquery.min.js"></script>
     <script src="./jqmobile-1.5/jqmobile-1.5.js"></script> -->
 
+    <script src="./fbase.js"></script>
+
     <script
       type="text/javascript"
       src="//dapi.kakao.com/v2/maps/sdk.js?appkey=01700d1e9231adf58b094361ccf9807b"
     ></script>
+
+    <script src="/__/firebase/8.0.0/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="/__/firebase/8.0.0/firebase-analytics.js"></script>
+
+    <!-- Initialize Firebase -->
+    <script src="/__/firebase/init.js"></script>
 
     <title>모바일웹</title>
     <!-- 360 * 640, 4배 해상도 이미지 -->
@@ -34,6 +45,9 @@
       style="width: 100%; height: 350px"
     ></div>
     <!--  -->
+    <!--  -->
+    <!--  -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script>
       var mapContainer = document.getElementById("map"), // 지도를 표시할 div
         mapOption = {
@@ -68,7 +82,7 @@
       const loadCoords = () => {
         const loadedCoords = localStorage.getItem(COORDS);
         if (loadedCoords === null) {
-          console.log(loadedCoords)
+          console.log(loadedCoords);
           navigator.geolocation.getCurrentPosition(
             handleGeoSuccess,
             handleGeoError
