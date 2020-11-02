@@ -14,7 +14,7 @@
       type="text/javascript"
       src="//dapi.kakao.com/v2/maps/sdk.js?appkey=01700d1e9231adf58b094361ccf9807b"
     ></script>
-    
+
     <title>모바일웹</title>
     <!-- 360 * 640, 4배 해상도 이미지 -->
     <!-- 구글 디바이스 메트릭스 -->
@@ -25,16 +25,55 @@
     <!-- 미디어쿼리 쓸땐 가로 크기 480으로 -->
   </head>
   <body>
-    <div id="map" style="width: 500px; height: 400px"></div>
+    <div id="map" style="width: 100%; height: 350px"></div>
+    <!--  -->
     <script>
-      var container = document.getElementById("map"); //지도를 담을 영역의 DOM 레퍼런스
-      var options = {
-        //지도를 생성할 때 필요한 기본 옵션
-        center: new kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
-        level: 3, //지도의 레벨(확대, 축소 정도)
+      var mapContainer = document.getElementById("map"), // 지도를 표시할 div
+        mapOption = {
+          center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+          level: 3, // 지도의 확대 레벨
+        };
+
+      // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
+      var map = new kakao.maps.Map(mapContainer, mapOption);
+      //
+      //
+      //
+      const COORDS = "coords";
+
+      const handleGeoSuccess = (position) => {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+        console.log(latitude, longitude);
+
+        const coordsObj = {
+          latitude,
+          longitude,
+        };
+
+        localStorage.setItem(COORDS, JSON.stringify(coordsObj));
       };
 
-      var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+      const handleGeoError = () => {
+        alert("위치 정보를 불러올 수 없습니다.");
+      };
+
+      const loadCoords = () => {
+        const loadedCoords = localStorage.getItem(COORDS);
+        console.log(loadedCoords);
+        if (loadedCoords === null) {
+          navigator.geolocation.getCurrentPosition(
+            handleGeoSuccess,
+            handleGeoError
+          );
+        }
+      };
+
+      const init = () => {
+        loadCoords();
+      };
+
+      init();
     </script>
   </body>
 </html>
