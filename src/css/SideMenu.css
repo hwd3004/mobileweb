@@ -1,0 +1,47 @@
+#smSpace {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: black;
+  opacity: 0.5;
+  width: 30vw;
+  height: 100vh;
+}
+
+#sideMenu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: lightblue;
+  width: 70vw;
+  height: 100vh;
+}
+
+#sideMenu > form {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.inputAcc {
+  text-align: center;
+  font-size: 5vw;
+}
+
+#accSubmit {
+  background-color: yellowgreen;
+  color: white;
+  margin-top: 1vh;
+  padding: 1vw;
+  font-size: 4vw;
+  width: 30vw;
+  border: none;
+}
+
+#linkSignUp {
+  background-color: yellowgreen;
+  color: white;
+  font-size: 4vw;
+  padding: 2vw;
+  position: relative;
+  right: -25vw;
+}
