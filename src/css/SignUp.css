@@ -1,4 +1,75 @@
+#SignUp {
+  text-align: center;
+  padding-bottom: 40vw;
+}
+
 #signUpForm {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+}
+
+#signUpHead {
+  text-align: center;
+  font-size: 7vw;
+  margin-top: 1vw;
+  margin-bottom: 1vw;
+}
+
+#signUpForm {
+  align-items: center;
+}
+
+#signUp1stDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 5vw;
+}
+
+#signUp1stDiv > .signUpInput {
+  width: 80vw;
+  font-size: 4vw;
+  text-align: center;
+}
+
+#signUp1stDiv {
+  margin: 2vw;
+}
+
+#signUpForm > fieldset {
+  width: 80vw;
+  font-size: 4vw;
+  display: flex;
+  flex-direction: column;
+}
+
+#signUpForm > fieldset > fieldset {
+  align-self: center;
+  width: 50vw;
+  font-size: 4vw;
+  display: flex;
+  flex-direction: column;
+}
+
+#signUpForm > fieldset > span {
+  margin-top: 3vw;
+}
+
+#signUpForm > fieldset > input {
+  margin-top: 2vw;
+  width: 50vw;
+  align-self: center;
+  font-size: 4vw;
+  margin-bottom: 2vw;
+  text-align: center;
+}
+
+#signUpSubmit {
+  background-color: yellowgreen;
+  color: white;
+  font-size: 4vw;
+  padding: 2vw;
+  border: none;
+  width: 30vw;
+  margin-top: 2vw;
 }

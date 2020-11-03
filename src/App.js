@@ -7,20 +7,30 @@ import { connect } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import SignUp from "./SignUp";
 import { authService } from "./fbase";
+import Footer from "./Footer";
 
 const App = (props) => {
   const [init, setInit] = useState(false);
 
   useEffect(() => {
     authService.onAuthStateChanged((user) => {
+      // if (user) {
+      //   props.dispatch({ type: "isLoggedIn", payload: props.state.reducerLog });
+      // } else {
+      //   props.dispatch({ type: "isLoggedIn", payload: props.state.reducerLog });
+      // }
       if (user) {
-        props.dispatch({ type: "isLoggedIn", payload: true });
-      } else {
-        props.dispatch({ type: "isLoggedIn", payload: false });
+        props.dispatch({ type: "isLoggedIn", payload: props.state.reducerLog });
       }
+
+      // 중요!!!
+      // SideMenu.js에서 로그아웃하는 함수에 props.dispatch({ type: "isLoggedIn", payload: props.state.reducerLog });
+      // 이거 해주고, App.js에서는 if 다음 else에 다시 props 보내주는건 지웠더니 잘된다
+
+
+      setInit(true);
     });
-    setInit(true);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const COORDS = "coords";
@@ -94,6 +104,8 @@ const App = (props) => {
               <SignUp />
             </Route>
           </Switch>
+
+          <Footer />
         </>
       ) : null}
     </div>
@@ -101,7 +113,6 @@ const App = (props) => {
 };
 
 const getStore = (state) => {
-  console.log("getStore", state);
   return {
     state: state,
   };

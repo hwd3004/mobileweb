@@ -1,3 +1,8 @@
+#smSpace,
+#sideMenu {
+  z-index: 100;
+}
+
 #smSpace {
   position: fixed;
   top: 0;
@@ -6,6 +11,21 @@
   opacity: 0.5;
   width: 30vw;
   height: 100vh;
+}
+
+#menuTop {
+  display: flex;
+  justify-content: space-around;
+}
+
+#logOutBtn {
+  background-color: yellowgreen;
+  color: white;
+  margin-top: 1vh;
+  padding: 1vw;
+  font-size: 4vw;
+  width: 30vw;
+  border: none;
 }
 
 #sideMenu {

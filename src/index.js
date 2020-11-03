@@ -8,7 +8,6 @@ import { combineReducers, createStore } from "redux";
 const isLoggedIn = false;
 
 const reducerLog = (state = isLoggedIn, action) => {
-  console.log(action);
   if (action.type === "isLoggedIn") {
     if (action.payload === true) {
       return false;
@@ -25,8 +24,6 @@ const reducerLog = (state = isLoggedIn, action) => {
 const sideMenuSwitch = false;
 
 const reducerSMS = (state = sideMenuSwitch, action) => {
-  console.log(action);
-
   if (action.type === "onSideMenu") {
     if (action.payload === true) {
       return false;

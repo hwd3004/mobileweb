@@ -1,0 +1,12 @@
+#Footer {
+    background-color: #303030;
+    color: white;
+    position: relative;
+    bottom: 0;
+    padding: 5vw;
+}
+
+.footerDiv {
+  display: flex;
+  justify-content: space-around;
+}
