@@ -4,7 +4,7 @@ import "./css/SideMenu.css";
 import { connect } from "react-redux";
 import { authService } from "./fbase";
 
-const SideMenu = ({dispatch, reducerMenu, reducerLog }) => {
+const SideMenu = ({ dispatch, reducerMenu, reducerLog }) => {
   const clickOffMenu = () => {
     dispatch({ type: "onSideMenu", payload: reducerMenu });
   };
@@ -46,7 +46,7 @@ const SideMenu = ({dispatch, reducerMenu, reducerLog }) => {
   };
 
   return (
-    <>
+    <div id="sideMenuDiv">
       <div id="smSpace" onClick={clickOffMenu}></div>
       <div id="sideMenu">
         {reducerLog ? (
@@ -63,26 +63,6 @@ const SideMenu = ({dispatch, reducerMenu, reducerLog }) => {
           </>
         ) : (
           <>
-            {/* <form onSubmit={onSubmit}>
-              <input
-                className="inputAcc"
-                type="email"
-                name="email"
-                value={email}
-                placeholder="이메일 입력"
-                onChange={onChange}
-              ></input>
-              <input
-                className="inputAcc"
-                type="password"
-                name="password"
-                value={password}
-                placeholder="비밀번호 입력"
-                onChange={onChange}
-              ></input>
-              <br></br>
-              <input id="accSubmit" type="submit" value="로그인"></input>
-            </form> */}
             <form onSubmit={onSubmit}>
               <input
                 className="inputAcc"
@@ -108,8 +88,13 @@ const SideMenu = ({dispatch, reducerMenu, reducerLog }) => {
             </Link>
           </>
         )}
+        <div>
+          <Link to="/FreeChat" onClick={clickOffMenu}>
+            채팅방
+          </Link>
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 

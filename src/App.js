@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
-import MapContainer from "./MapContainer";
 import "./css/App.css";
 import Logo from "./assets/image/logo.svg";
 import SideMenu from "./SideMenu";
 import { connect } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import SignUp from "./SignUp";
-import { authService } from "./fbase";
+import { authService, dbService } from "./fbase";
 import Footer from "./Footer";
+import FreeChat from "./FreeChat";
 
-const App = ({ dispatch, reducerLog, reducerMenu }) => {
+const App = ({ dispatch, reducerLog, reducerMenu, reducerNickname }) => {
   const [init, setInit] = useState(false);
 
   useEffect(() => {
@@ -33,6 +33,26 @@ const App = ({ dispatch, reducerLog, reducerMenu }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  //
+  //
+  //
+
+  const getNickname = async () => {
+    const userRef = await dbService
+      .collection("userDB")
+      .doc(`${authService.currentUser.email}`);
+
+    const nickname = await userRef.get().then((doc) => {
+      return doc.data().nickname;
+    });
+
+    dispatch({ type: "nickname", payload: nickname });
+  };
+
+  if (reducerLog) {
+    getNickname();
+  }
+
   const COORDS = "coords";
   const handleGeoSuccess = (position) => {
     const latitude = position.coords.latitude;
@@ -50,21 +70,6 @@ const App = ({ dispatch, reducerLog, reducerMenu }) => {
   };
 
   navigator.geolocation.watchPosition(handleGeoSuccess, handleGeoError);
-
-  //
-  //
-  //
-
-  // const [onClickMenu, setOnClickMenu] = useState(false);
-  //
-  // const onClickBars = (event) => {
-  //   setOnClickMenu(!onClickMenu);
-  //   console.log(onClickMenu);
-  // };
-
-  //
-  //
-  //
 
   const onClickBars = () => {
     dispatch({ type: "onSideMenu", payload: reducerMenu });
@@ -86,23 +91,20 @@ const App = ({ dispatch, reducerLog, reducerMenu }) => {
               onClick={onClickLogo}
             ></img>
             <h1 onClick={onClickLogo}>닥터펫</h1>
-            {/* <span id="menu" onClick={onClickBars}>
-            <i className="fas fa-bars"></i>
-          </span> */}
+
             <span id="menu" onClick={onClickBars}>
               <i className="fas fa-bars"></i>
             </span>
           </header>
 
-          {/* {props.reducerMenu ? <SideMenu /> : null} */}
           {reducerMenu ? <SideMenu /> : null}
-
-          {/* <MapContainer />
-        <div id="temp"></div> */}
 
           <Switch>
             <Route exact path="/SignUp">
               <SignUp />
+            </Route>
+            <Route exact path="/FreeChat">
+              <FreeChat />
             </Route>
           </Switch>
 
@@ -113,10 +115,11 @@ const App = ({ dispatch, reducerLog, reducerMenu }) => {
   );
 };
 
-const getStore = ({ reducerMenu, reducerLog }) => {
+const getStore = ({ reducerMenu, reducerLog, reducerNickname }) => {
   return {
     reducerMenu,
     reducerLog,
+    reducerNickname,
   };
 };
 

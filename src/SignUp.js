@@ -11,6 +11,7 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [checkPassword, setCheckPassword] = useState("");
   const [matchPassword, setMatchPassword] = useState(false);
+  const [nickname, setNickname] = useState("");
   const [gender, setGender] = useState("noSet");
   const [phoneNumber, setPhoneNumber] = useState("기입안함");
   const [error, setError] = useState("");
@@ -30,6 +31,8 @@ const SignUp = () => {
       setGender(value);
     } else if (name === "phoneNumber") {
       setPhoneNumber(value);
+    } else if (name === "nickname") {
+      setNickname(value);
     }
   };
 
@@ -56,6 +59,7 @@ const SignUp = () => {
             password,
             gender,
             phoneNumber,
+            nickname,
             signUpDay: moment().format("YYYY-MM-DD HH:mm:ss"),
             permission: "user",
           });
@@ -108,6 +112,19 @@ const SignUp = () => {
             required
             type="password"
             placeholder="비밀번호를 확인하여주세요"
+          ></input>
+
+          <span>닉네임 입력</span>
+          <input
+            className="signUpInput"
+            onChange={onChange}
+            value={nickname}
+            name="nickname"
+            minLength="2"
+            maxLength="10"
+            required
+            type="text"
+            placeholder="닉네임을 입력하여주세요"
           ></input>
         </div>
 

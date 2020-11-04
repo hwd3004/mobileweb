@@ -5,37 +5,49 @@ import { Provider } from "react-redux";
 import App from "./App";
 import { combineReducers, createStore } from "redux";
 
-const isLoggedIn = false;
-
-const reducerLog = (state = isLoggedIn, action) => {
-  if (action.type === "isLoggedIn") {
-    if (action.payload === true) {
-      return false;
-    } else if (action.payload === false) {
-      return true;
-    }
+const reducerNickname = (state = null, { type, payload }) => {
+  if (type === "nickname") {
+    return payload;
   } else {
     return state;
   }
 };
 
 //
+//
+//
 
-const sideMenuSwitch = false;
+const isLoggedIn = false;
 
-const reducerMenu = (state = sideMenuSwitch, action) => {
-  if (action.type === "onSideMenu") {
-    if (action.payload === true) {
-      return false;
-    } else if (action.payload === false) {
-      return true;
-    }
+const reducerLog = (state = isLoggedIn, action) => {
+  if (action.type === "isLoggedIn") {
+    return !state;
   } else {
     return state;
   }
 };
 
-const store = createStore(combineReducers({ reducerMenu, reducerLog }));
+//
+//
+//
+
+const sideMenuSwitch = false;
+
+const reducerMenu = (state = sideMenuSwitch, action) => {
+  if (action.type === "onSideMenu") {
+    return !state;
+  } else {
+    return state;
+  }
+};
+
+//
+//
+//
+
+const store = createStore(
+  combineReducers({ reducerMenu, reducerLog, reducerNickname })
+);
 
 ReactDOM.render(
   <HashRouter>

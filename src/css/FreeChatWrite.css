@@ -1,0 +1,25 @@
+#chatForm,
+#chatForm > form {
+  display: flex;
+  flex-direction: column;
+}
+
+#textDiv {
+  display: flex;
+}
+
+#textInputFreeChat {
+  font-size: 3.5vw;
+  padding: 2vw;
+  width: 85vw;
+}
+
+#submitFreeChat {
+  text-align: center;
+  width: 15vw;
+  background-color: yellowgreen;
+  border: none;
+  color: white;
+  font-size: 4vw;
+  padding: 2vw;
+}

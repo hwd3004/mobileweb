@@ -1,0 +1,35 @@
+#chatRoom {
+  background-color: #8a51ba;
+  display: flex;
+  flex-direction: column;
+}
+
+.eachChat {
+  display: flex;
+  align-items: flex-end;
+  margin-top: 1vw;
+  margin-bottom: 1vw;
+}
+
+.nickname,
+.chatDate {
+  padding: 2vw;
+}
+
+.chatBox {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  background-color: white;
+  padding: 2vw;
+}
+
+.freeChatimg {
+  /* width: 15vw; */
+  width:100%;
+}
+
+.chatDate {
+  display: inline-block;
+  text-align: right;
+}
