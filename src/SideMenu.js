@@ -4,15 +4,15 @@ import "./css/SideMenu.css";
 import { connect } from "react-redux";
 import { authService } from "./fbase";
 
-const SideMenu = (props) => {
+const SideMenu = ({dispatch, reducerMenu, reducerLog }) => {
   const clickOffMenu = () => {
-    props.dispatch({ type: "onSideMenu", payload: props.state.reducerSMS });
+    dispatch({ type: "onSideMenu", payload: reducerMenu });
   };
 
   const clickLogOut = (event) => {
     event.preventDefault();
-    props.dispatch({ type: "onSideMenu", payload: props.state.reducerSMS });
-    props.dispatch({ type: "isLoggedIn", payload: props.state.reducerLog });
+    dispatch({ type: "onSideMenu", payload: reducerMenu });
+    dispatch({ type: "isLoggedIn", payload: reducerLog });
     authService.signOut();
   };
 
@@ -39,19 +39,17 @@ const SideMenu = (props) => {
     event.preventDefault();
     try {
       await authService.signInWithEmailAndPassword(email, password);
-      props.dispatch({ type: "isLoggedIn", payload: props.state.reducerLog });
+      dispatch({ type: "isLoggedIn", payload: reducerLog });
     } catch (error) {
       alert(error);
     }
   };
 
-  console.log(props.state.reducerLog)
-
   return (
     <>
       <div id="smSpace" onClick={clickOffMenu}></div>
       <div id="sideMenu">
-        {props.state.reducerLog ? (
+        {reducerLog ? (
           <>
             <div id="menuTop">
               <span>내 정보</span>
@@ -115,9 +113,10 @@ const SideMenu = (props) => {
   );
 };
 
-const getStore = (state) => {
+const getStore = ({ reducerMenu, reducerLog }) => {
   return {
-    state: state,
+    reducerMenu,
+    reducerLog,
   };
 };
 

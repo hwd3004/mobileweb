@@ -9,7 +9,7 @@ import SignUp from "./SignUp";
 import { authService } from "./fbase";
 import Footer from "./Footer";
 
-const App = (props) => {
+const App = ({ dispatch, reducerLog, reducerMenu }) => {
   const [init, setInit] = useState(false);
 
   useEffect(() => {
@@ -20,13 +20,13 @@ const App = (props) => {
       //   props.dispatch({ type: "isLoggedIn", payload: props.state.reducerLog });
       // }
       if (user) {
-        props.dispatch({ type: "isLoggedIn", payload: props.state.reducerLog });
+        // props.dispatch({ type: "isLoggedIn", payload: props.reducerLog });
+        dispatch({ type: "isLoggedIn", payload: reducerLog });
       }
 
       // 중요!!!
       // SideMenu.js에서 로그아웃하는 함수에 props.dispatch({ type: "isLoggedIn", payload: props.state.reducerLog });
       // 이거 해주고, App.js에서는 if 다음 else에 다시 props 보내주는건 지웠더니 잘된다
-
 
       setInit(true);
     });
@@ -67,7 +67,7 @@ const App = (props) => {
   //
 
   const onClickBars = () => {
-    props.dispatch({ type: "onSideMenu", payload: props.state.reducerSMS });
+    dispatch({ type: "onSideMenu", payload: reducerMenu });
   };
 
   const onClickLogo = () => {
@@ -94,7 +94,8 @@ const App = (props) => {
             </span>
           </header>
 
-          {props.state.reducerSMS ? <SideMenu /> : null}
+          {/* {props.reducerMenu ? <SideMenu /> : null} */}
+          {reducerMenu ? <SideMenu /> : null}
 
           {/* <MapContainer />
         <div id="temp"></div> */}
@@ -112,9 +113,10 @@ const App = (props) => {
   );
 };
 
-const getStore = (state) => {
+const getStore = ({ reducerMenu, reducerLog }) => {
   return {
-    state: state,
+    reducerMenu,
+    reducerLog,
   };
 };
 

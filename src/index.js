@@ -23,7 +23,7 @@ const reducerLog = (state = isLoggedIn, action) => {
 
 const sideMenuSwitch = false;
 
-const reducerSMS = (state = sideMenuSwitch, action) => {
+const reducerMenu = (state = sideMenuSwitch, action) => {
   if (action.type === "onSideMenu") {
     if (action.payload === true) {
       return false;
@@ -35,7 +35,7 @@ const reducerSMS = (state = sideMenuSwitch, action) => {
   }
 };
 
-const store = createStore(combineReducers({ reducerSMS, reducerLog }));
+const store = createStore(combineReducers({ reducerMenu, reducerLog }));
 
 ReactDOM.render(
   <HashRouter>
