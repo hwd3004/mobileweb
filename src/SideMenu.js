@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./css/SideMenu.css";
 import { connect } from "react-redux";
 import { authService } from "./fbase";
+import Footer from "./Footer";
 
 const SideMenu = ({ dispatch, reducerMenu, reducerLog }) => {
   const clickOffMenu = () => {
@@ -52,7 +53,7 @@ const SideMenu = ({ dispatch, reducerMenu, reducerLog }) => {
         {reducerLog ? (
           <>
             <div id="menuTop">
-              <span>내 정보</span>
+              <span id="myProfile">내 정보</span>
               <input
                 id="logOutBtn"
                 type="submit"
@@ -82,18 +83,31 @@ const SideMenu = ({ dispatch, reducerMenu, reducerLog }) => {
               ></input>
               <input id="accSubmit" type="submit" value="로그인"></input>
             </form>
-            <br></br>
             <Link id="linkSignUp" to="/SignUp" onClick={clickOffMenu}>
               가입하기
             </Link>
           </>
         )}
-        <div>
-          <Link to="/FreeChat" onClick={clickOffMenu}>
+        <div id="sideMenuBody">
+          <Link className="sideMenuBtn" to="/SearchMap" onClick={clickOffMenu}>
+            내 주변 동물병원
+          </Link>
+          <Link className="sideMenuBtn" to="/FreeChat" onClick={clickOffMenu}>
             채팅방
           </Link>
+          <Link className="sideMenuBtn" to="/" onClick={clickOffMenu}>
+            메뉴3
+          </Link>
+          <Link className="sideMenuBtn" to="/" onClick={clickOffMenu}>
+            메뉴4
+          </Link>
+          <Link className="sideMenuBtn" to="/" onClick={clickOffMenu}>
+            메뉴5
+          </Link>
         </div>
+        <Footer />
       </div>
+      {/*  */}
     </div>
   );
 };

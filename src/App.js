@@ -6,8 +6,9 @@ import { connect } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import SignUp from "./SignUp";
 import { authService, dbService } from "./fbase";
-import Footer from "./Footer";
 import FreeChat from "./FreeChat";
+import SearchMap from "./SearchMap";
+import SearchPlace from "./Searchplace";
 
 const App = ({ dispatch, reducerLog, reducerMenu, reducerNickname }) => {
   const [init, setInit] = useState(false);
@@ -53,24 +54,6 @@ const App = ({ dispatch, reducerLog, reducerMenu, reducerNickname }) => {
     getNickname();
   }
 
-  const COORDS = "coords";
-  const handleGeoSuccess = (position) => {
-    const latitude = position.coords.latitude;
-    const longitude = position.coords.longitude;
-    const coordsObj = {
-      latitude,
-      longitude,
-    };
-
-    localStorage.setItem(COORDS, JSON.stringify(coordsObj));
-  };
-
-  const handleGeoError = () => {
-    alert("위치 정보를 불러올 수 없습니다");
-  };
-
-  navigator.geolocation.watchPosition(handleGeoSuccess, handleGeoError);
-
   const onClickBars = () => {
     dispatch({ type: "onSideMenu", payload: reducerMenu });
   };
@@ -100,15 +83,19 @@ const App = ({ dispatch, reducerLog, reducerMenu, reducerNickname }) => {
           {reducerMenu ? <SideMenu /> : null}
 
           <Switch>
+            <Route exact path="/">
+              <SearchPlace />
+            </Route>
             <Route exact path="/SignUp">
               <SignUp />
             </Route>
             <Route exact path="/FreeChat">
               <FreeChat />
             </Route>
+            <Route exact path="/SearchMap">
+              <SearchMap />
+            </Route>
           </Switch>
-
-          <Footer />
         </>
       ) : null}
     </div>
