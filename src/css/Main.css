@@ -1,0 +1,20 @@
+#Main {
+  padding-top: 5vw;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+#Main > div > img {
+  width: 50vw;
+}
+
+#onMenu {
+  font-weight: bold;
+  background-color: rgb(108, 99, 255);
+  /* color: rgb(63, 61, 86); */
+  /* color: rgb(204, 204, 204); */
+  /* color: rgb(200, 197, 255); */
+  /* color: rgba(222, 220, 255); */
+  color: white;
+  padding: 2vw;
+}

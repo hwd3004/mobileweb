@@ -1,0 +1,26 @@
+#MyProfile {
+    padding-bottom: 80vh;
+}
+
+#MyProfile,
+#MyProfile > fieldset {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background-color: whitesmoke;
+}
+
+#MyProfile > fieldset {
+  margin-top: 2vh;
+  width: 90%;
+  align-self: center;
+  padding-bottom: 4vw;
+}
+
+#MyProfile div {
+  display: flex;
+}
+#MyProfile p {
+  display: inline-block;
+  flex: 1;
+}

@@ -1,0 +1,23 @@
+#Searchplace {
+  display: flex;
+  flex-direction: column;
+  background-color: cornsilk;
+}
+
+#inputPlaceForm {
+  display: flex;
+  margin-top: 1vw;
+}
+#inputPlaceForm > input {
+  padding: 2vw;
+  flex: 1;
+}
+
+#inputPlaceForm > button {
+  background-color: yellowgreen;
+  color: white;
+  padding: 2vw;
+  font-size: 4vw;
+  width: 34vw;
+  border: none;
+}

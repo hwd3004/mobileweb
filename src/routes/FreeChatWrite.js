@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { authService, dbService, storageService } from "./fbase";
+import { authService, dbService, storageService } from "../fbase";
 import moment from "moment";
-import "./css/FreeChatWrite.css";
+import "../css/FreeChatWrite.css";
 
 const FreeChatWrite = ({
   dispatch,

@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
-import "./css/App.css";
-import Logo from "./assets/image/logo.svg";
+import "../css/App.css";
+import Logo from "../assets/image/logo.svg";
 import SideMenu from "./SideMenu";
 import { connect } from "react-redux";
 import { Route, Switch } from "react-router-dom";
-import SignUp from "./SignUp";
-import { authService, dbService } from "./fbase";
-import FreeChat from "./FreeChat";
-import SearchMap from "./SearchMap";
-import SearchPlace from "./Searchplace";
+import SignUp from "../routes/SignUp";
+import { authService, dbService } from "../fbase";
+import FreeChat from "../routes/FreeChat";
+import SearchPlace from "../routes/SearchPlace";
+import Main from "./Main";
+import MyProfile from "../routes/MyProfile";
 
-const App = ({ dispatch, reducerLog, reducerMenu, reducerNickname }) => {
+const App = ({ dispatch, reducerLog, reducerMenu }) => {
   const [init, setInit] = useState(false);
 
   useEffect(() => {
@@ -84,6 +85,9 @@ const App = ({ dispatch, reducerLog, reducerMenu, reducerNickname }) => {
 
           <Switch>
             <Route exact path="/">
+              <Main />
+            </Route>
+            <Route exact path="/SearchPlace">
               <SearchPlace />
             </Route>
             <Route exact path="/SignUp">
@@ -92,8 +96,8 @@ const App = ({ dispatch, reducerLog, reducerMenu, reducerNickname }) => {
             <Route exact path="/FreeChat">
               <FreeChat />
             </Route>
-            <Route exact path="/SearchMap">
-              <SearchMap />
+            <Route exact path="/MyProfile">
+              <MyProfile />
             </Route>
           </Switch>
         </>

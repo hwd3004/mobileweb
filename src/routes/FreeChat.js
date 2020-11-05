@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { dbService } from "./fbase";
+import { dbService } from "../fbase";
 // import { connect } from "react-redux";
 import FreeChatWrite from "./FreeChatWrite";
-import "./css/FreeChat.css";
+import "../css/FreeChat.css";
 
 const FreeChat = () => {
   const [freeChats, setFreeChats] = useState([]);

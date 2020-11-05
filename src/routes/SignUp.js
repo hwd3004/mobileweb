@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import "./css/SignUp.css";
-import { authService, dbService } from "./fbase";
+import "../css/SignUp.css";
+import { authService, dbService } from "../fbase";
 import moment from "moment";
 import { useHistory } from "react-router-dom";
 

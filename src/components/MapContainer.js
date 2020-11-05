@@ -1,14 +1,55 @@
 import React, { useEffect } from "react";
+import "../css/MapContainer.css";
 
 const { kakao } = window;
 
 const MapContainer = ({ searchPlace }) => {
   useEffect(() => {
-    const container = document.getElementById("myMap");
-    const options = {
-      center: new kakao.maps.LatLng(33.450701, 126.570667),
-      level: 3,
+    const COORDS = "coords";
+
+    const handleGeoSuccess = (position) => {
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
+      const coordsObj = {
+        latitude,
+        longitude,
+      };
+
+      localStorage.setItem(COORDS, JSON.stringify(coordsObj));
     };
+
+    const handleGeoError = () => {
+      alert("위치 정보를 불러올 수 없습니다");
+    };
+
+    navigator.geolocation.watchPosition(handleGeoSuccess, handleGeoError);
+
+    //
+    //
+    //
+
+    const parseCoords = JSON.parse(localStorage.getItem(COORDS));
+
+    let latitude, longitude, options;
+
+    if (parseCoords) {
+      latitude = parseCoords.latitude;
+      longitude = parseCoords.longitude;
+      options = {
+        center: new kakao.maps.LatLng(latitude, longitude),
+        level: 2,
+      };
+    } else {
+      latitude = 33.450701;
+      longitude = 126.570667;
+      options = {
+        center: new kakao.maps.LatLng(latitude, longitude),
+        level: 2,
+      };
+    }
+
+    const container = document.getElementById("myMap");
+
     const map = new kakao.maps.Map(container, options);
 
     const ps = new kakao.maps.services.Places();
@@ -50,13 +91,15 @@ const MapContainer = ({ searchPlace }) => {
   }, [searchPlace]);
 
   return (
-    <div
-      id="myMap"
-      style={{
-        width: "100vw",
-        height: "100vw",
-      }}
-    ></div>
+    <div id="MapContainer">
+      <div
+        id="myMap"
+        style={{
+          width: "90vw",
+          height: "70vh",
+        }}
+      ></div>
+    </div>
   );
 };
 

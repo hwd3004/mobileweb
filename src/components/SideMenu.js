@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "./css/SideMenu.css";
+import "../css/SideMenu.css";
 import { connect } from "react-redux";
-import { authService } from "./fbase";
+import { authService } from "../fbase";
 import Footer from "./Footer";
 
 const SideMenu = ({ dispatch, reducerMenu, reducerLog }) => {
@@ -53,7 +53,10 @@ const SideMenu = ({ dispatch, reducerMenu, reducerLog }) => {
         {reducerLog ? (
           <>
             <div id="menuTop">
-              <span id="myProfile">내 정보</span>
+              {/* <span id="myProfile">내 정보</span> */}
+              <Link id="myProfile" to="/MyProfile" onClick={clickOffMenu}>
+                내 정보
+              </Link>
               <input
                 id="logOutBtn"
                 type="submit"
@@ -89,7 +92,11 @@ const SideMenu = ({ dispatch, reducerMenu, reducerLog }) => {
           </>
         )}
         <div id="sideMenuBody">
-          <Link className="sideMenuBtn" to="/SearchMap" onClick={clickOffMenu}>
+          <Link
+            className="sideMenuBtn"
+            to="/SearchPlace"
+            onClick={clickOffMenu}
+          >
             내 주변 동물병원
           </Link>
           <Link className="sideMenuBtn" to="/FreeChat" onClick={clickOffMenu}>

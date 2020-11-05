@@ -1,0 +1,7 @@
+#MapContainer {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5vw;
+  align-items: center;
+  justify-items: center;
+}
