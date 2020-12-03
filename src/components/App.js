@@ -1,18 +1,25 @@
 import React, { useEffect, useState } from "react";
 import "../css/App.css";
-import Logo from "../assets/image/logo.svg";
+
 import SideMenu from "./SideMenu";
 import { connect } from "react-redux";
-import { Route, Switch } from "react-router-dom";
+import { Redirect, Route, Switch, useHistory } from "react-router-dom";
 import SignUp from "../routes/SignUp";
 import { authService, dbService } from "../fbase";
 import FreeChat from "../routes/FreeChat";
 import SearchPlace from "../routes/SearchPlace";
 import Main from "./Main";
 import MyProfile from "../routes/MyProfile";
+import Mobile from "./Mobile";
+import Home from "./Home";
 
-const App = ({ dispatch, reducerLog, reducerMenu }) => {
+const App = (props) => {
+  console.log("App.js/props", props);
+  const { dispatch, reducerLog, reducerMenu } = props;
+
   const [init, setInit] = useState(false);
+
+  const history = useHistory();
 
   useEffect(() => {
     authService.onAuthStateChanged((user) => {
@@ -59,15 +66,36 @@ const App = ({ dispatch, reducerLog, reducerMenu }) => {
     dispatch({ type: "onSideMenu", payload: reducerMenu });
   };
 
-  const onClickLogo = () => {
-    window.location.replace("/");
+  const detectDevice = () => {
+    const { userAgent } = navigator;
+
+    if (
+      userAgent.match(
+        /iPhone|iPod|Android|Windows CE|BlackBerry|Symbian|Windows Phone|webOS|Opera Mini|Opera Mobi|POLARIS|IEMobile|lgtelecom|nokia|SonyEricsson/i
+      ) != null ||
+      userAgent.match(/LG|SAMSUNG|Samsung/) != null
+    ) {
+      console.log("mobile");
+
+      history.push("/Mobile");
+
+      return true;
+    } else {
+      console.log("pc");
+
+      history.push("/");
+
+      return false;
+    }
   };
+
+  detectDevice();
 
   return (
     <div id="App">
       {init ? (
         <>
-          <header>
+          {/* <header>
             <img
               id="logo"
               src={Logo}
@@ -81,11 +109,14 @@ const App = ({ dispatch, reducerLog, reducerMenu }) => {
             </span>
           </header>
 
-          {reducerMenu ? <SideMenu /> : null}
+          {reducerMenu ? <SideMenu /> : null} */}
 
           <Switch>
             <Route exact path="/">
-              <Main />
+              <Home />
+            </Route>
+            <Route exact path="/Mobile">
+              <Mobile />
             </Route>
             <Route exact path="/SearchPlace">
               <SearchPlace />
@@ -99,6 +130,8 @@ const App = ({ dispatch, reducerLog, reducerMenu }) => {
             <Route exact path="/MyProfile">
               <MyProfile />
             </Route>
+
+            <Redirect from="*" to="/" />
           </Switch>
         </>
       ) : null}
@@ -106,7 +139,17 @@ const App = ({ dispatch, reducerLog, reducerMenu }) => {
   );
 };
 
-const getStore = ({ reducerMenu, reducerLog, reducerNickname }) => {
+// const getStore = ({ reducerMenu, reducerLog, reducerNickname }) => {
+//   return {
+//     reducerMenu,
+//     reducerLog,
+//     reducerNickname,
+//   };
+// };
+
+const getStore = (state) => {
+  console.log("App.js/getStore state", state);
+  const { reducerMenu, reducerLog, reducerNickname } = state;
   return {
     reducerMenu,
     reducerLog,

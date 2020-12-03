@@ -1,0 +1,26 @@
+#wrap {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+#pcHeader {
+  padding: 1vw;
+  display: flex;
+  background-color: skyblue;
+}
+
+#pclogo {
+  width: 100px;
+}
+
+#pcHeader > h1 {
+  font-size: 50px;
+  display: inline-block;
+  color: beige;
+  align-self: center;
+  text-align: center;
+}
+
+#pcLoginDiv {
+  display: flex;
+}
